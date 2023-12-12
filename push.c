@@ -19,4 +19,5 @@ void push(stack_t **head, unsigned int value)
 	new_node->n = value;
 	new_node->next = *head;
 	*head = new_node;
+	free(new_node);
 }
