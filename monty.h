@@ -43,7 +43,7 @@ void push(stack_t **head, unsigned int value);
 void pall(stack_t **head);
 void pint(stack_t **head, unsigned int line_number);
 void pop(stack_t **head, unsigned int line_number);
-void swap(stack_t **head, unsigned int line_number)
+void swap(stack_t **head, unsigned int line_number);
 void execute_instruction(char *opcode, char *operator,
 		stack_t **head, unsigned int line_number);
 

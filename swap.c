@@ -10,7 +10,7 @@ void swap(stack_t **head, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	temp = (*stack)->n;
-	(*stack)->n = ((*stack)->next)->n;
-	((*stack)->next)->n = temp;
+	temp = (*head)->n;
+	(*head)->n = ((*head)->next)->n;
+	((*head)->next)->n = temp;
 }
