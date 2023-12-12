@@ -39,6 +39,10 @@ void execute_instruction(char *opcode, char *operator, stack_t **head,
 	{
 		pop(head, line_number);
 	}
+	else if (strcmp(opcode, "swap") == 0)
+	{
+		swap(head, line_number);
+	}
 	else
 	{
 		fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
