@@ -49,8 +49,11 @@ void pop(stack_t **head, unsigned int line_number);
 void swap(stack_t **head, unsigned int line_number);
 void add(stack_t **head, unsigned int line_number);
 void nop(stack_t **head, unsigned int line_number);
+
+	/** advanced **/
 void sub(stack_t **head, unsigned int line_number);
 void _div(stack_t **head, unsigned int line_number);
+void mul(stack_t **head, unsigned int line_number);
 void execute_instruction(char *opcode, char *operator,
 		stack_t **head, unsigned int line_number);
 #endif /* MONTY_H */
