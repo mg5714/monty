@@ -42,7 +42,7 @@ void free_stack(stack_t **head);
 
 
 void read_file(const char *filename);
-void push(stack_t **head, unsigned int value);
+void push(stack_t **head, unsigned int line_number);
 void pall(stack_t **head, unsigned int line_number);
 void pint(stack_t **head, unsigned int line_number);
 void pop(stack_t **head, unsigned int line_number);
