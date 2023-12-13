@@ -37,9 +37,7 @@ void read_file(const char *filename)
 
 		if (opcode != NULL)
 		{
-			operator = _strndup(operator, strlen(operator) + 1);
 			execute_instruction(opcode, operator, &head, line_number);
-			free(operator);
 		}
 
 		line_number++;
