@@ -35,7 +35,7 @@ void read_file(const char *filename)
 		opcode = strtok(line, " \n\t");
 		operator = strtok(NULL, " \n\t");
 
-		if (opcode[0] == "#")
+		if (opcode && opcode[0] == "#")
 		{
 			return (0);
 		}
