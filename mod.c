@@ -9,13 +9,13 @@
  **/
 void mod(stack_t **head, unsigned int line_number)
 {
-        stack_t *temp;
+	stack_t *temp;
 
-        if (*head == NULL || (*head)->next == NULL)
-        {
-                fprintf(stderr, "L%u: can't mod, stack too short\n", line_number);
-                exit(EXIT_FAILURE);
-        }
+	if (*head == NULL || (*head)->next == NULL)
+	{
+		fprintf(stderr, "L%u: can't mod, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 
         if ((*head)->n == 0)
         {
