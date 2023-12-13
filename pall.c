@@ -5,9 +5,11 @@
  * @head: spointer to pointer tack head
  *
  **/
-void pall(stack_t **head)
+void pall(stack_t **head, unsigned int line_number)
 {
 	stack_t *current = *head;
+
+	(void)line_number;
 
 	while (current)
 	{
