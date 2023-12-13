@@ -30,7 +30,7 @@ void read_file(const char *filename)
 			line[len - 1] = '\0';
 		}
 
-		if (line[0] == "#")
+		if (line[0] == '#')
 		{
 			line_number++;
 			continue;
