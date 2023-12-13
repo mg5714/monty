@@ -3,7 +3,7 @@
 /**
  * push - pushes an element to the stack.
  *@head: pointer to a pointer to the head of the stack.
- *@line_number: The integer value to be pushed onto the stack.
+ *@value: The integer value to be pushed onto the stack.
  *
  **/
 void push(stack_t **head, unsigned int value)
@@ -17,13 +17,6 @@ void push(stack_t **head, unsigned int value)
 	}
 
 	new_node->n = value;
-	new_node->prev = NULL;
 	new_node->next = *head;
-
-	if (*head)
-	{
-		(*head)->prev = new_node;
-	}
-
 	*head = new_node;
 }

@@ -9,6 +9,9 @@ void pall(stack_t **head)
 {
 	stack_t *current = *head;
 
+	if (h == NULL)
+		return;
+
 	while (current)
 	{
 		printf("%d\n", current->n);
