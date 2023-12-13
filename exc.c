@@ -12,7 +12,13 @@
 void execute_instruction(char *opcode, char *operator, stack_t **head,
 		unsigned int line_number)
 {
-	int value;
+	instruction_t inst[] = {
+		{"pall", pall}, {"pint", pint}, {"pop", pop}, {"swap", swap},
+		{"add", add}, {"nop", nop}, {"sub", sub}, {"div", _div}, {"mul", mul},
+		{"mod", mod}, {"pchar", pchar}, {"pstr", pstr}, {"rotl", rotl}, {NULL, NULL}
+	};
+
+	int i = 0, value;
 
 	if (strcmp(opcode, "push") == 0)
 	{
@@ -23,59 +29,25 @@ void execute_instruction(char *opcode, char *operator, stack_t **head,
 			exit(EXIT_FAILURE);
 		}
 
-	value = atoi(operator);
-
-	push(head, value);
-	} else if (strcmp(opcode, "pall") == 0) {
-		pall(head);
-	} else if (strcmp(opcode, "pint") == 0) {
-		pint(head, line_number);
+		value = atoi(operator);
+		if (value == 0 && operator[0] != '0')
+		{
+			fprintf(stderr, "L%u: usage: push integer\n", line_number);
+			exit(EXIT_FAILURE);
+		}
+		push(head, value);
+		return;
 	}
-	else if (strcmp(opcode, "pop") == 0)
+	while (inst[i].opcode)
 	{
-		pop(head, line_number);
+		if (strcmp(opcode, inst[i].opcode) == 0)
+		{
+			inst[i].f(head, line_number);
+			return;
+		}
+		i++;
 	}
-	else if (strcmp(opcode, "swap") == 0)
-	{
-		swap(head, line_number);
-	}
-	else if (strcmp(opcode, "add") == 0)
-	{
-		add(head, line_number);
-	}
-	else if (strcmp(opcode, "nop") == 0)
-	{
-		nop(head, line_number);
-	}
-	else if (strcmp(opcode, "sub") == 0)
-	{
-		sub(head, line_number);
-	}
-	else if (strcmp(opcode, "div") == 0)
-	{
-		_div(head, line_number);
-	}
-	else if (strcmp(opcode, "mul") == 0)
-	{
-		mul(head, line_number);
-	}
-	else if (strcmp(opcode, "mod") == 0)
-	{
-		mod(head, line_number);
-	}
-	else if (strcmp(opcode, "pchar") == 0)
-	{
-		pchar(head, line_number);
-	}
-	else if (strcmp(opcode, "pstr") == 0)
-	{
-		pstr(head, line_number);
-	}
-	else if (strcmp(opcode, "rotl") == 0)
-	{
-		rotl(head, line_number);
-	}
-	else
+	if (inst[i].opcode == NULL)
 	{
 		fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
 		exit(EXIT_FAILURE);

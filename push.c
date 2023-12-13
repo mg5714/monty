@@ -6,9 +6,11 @@
  *@value: The integer value to be pushed onto the stack.
  *
  **/
-void push(stack_t **head, unsigned int value)
+void push(stack_t **head, unsigned int line_number)
 {
-	stack_t *new_node = malloc(sizeof(stack_t));
+	stack_t *new_node;
+
+	new_node = malloc(sizeof(stack_t));
 
 	if (!new_node)
 	{
@@ -16,7 +18,7 @@ void push(stack_t **head, unsigned int value)
 		exit(EXIT_FAILURE);
 	}
 
-	new_node->n = value;
+	new_node->n = line_number;
 	new_node->next = *head;
 	*head = new_node;
 }
