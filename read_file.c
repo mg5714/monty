@@ -10,9 +10,7 @@
 void read_file(const char *filename)
 {
 	FILE *file;
-	char line[MAX_LINE_LENGTH];
-	char *opcode;
-	char *operator;
+	char line[MAX_LINE_LENGTH], *opcode, *operator;
 	unsigned int line_number = 1;
 	stack_t *head = NULL;
 
@@ -40,18 +38,15 @@ void read_file(const char *filename)
 
 		opcode = strtok(line, " \n\t");
 		operator = strtok(NULL, " \n\t");
-
 		if (opcode != NULL)
 		{
 			execute_instruction(opcode, operator, &head, line_number);
 		}
-
 		line_number++;
 	}
 
 	free_stack(&head);
 	fclose(file);
-
 	exit(EXIT_SUCCESS);
 }
 
