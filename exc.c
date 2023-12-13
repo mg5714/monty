@@ -43,6 +43,10 @@ void execute_instruction(char *opcode, char *operator, stack_t **head,
 	{
 		swap(head, line_number);
 	}
+	else if (strcmp(opcode, "add") == 0)
+	{
+		add(head, line_number);
+	}
 	else
 	{
 		fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
