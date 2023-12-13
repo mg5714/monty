@@ -58,10 +58,11 @@ void read_file(const char *filename)
 void free_stack(stack_t **head)
 {
 	stack_t *current = *head;
-	
+
 	while (current)
 	{
 		stack_t *next = current->next;
+
 		free(current);
 		current = next;
 	}
