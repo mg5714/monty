@@ -51,6 +51,10 @@ void execute_instruction(char *opcode, char *operator, stack_t **head,
         {
                 nop(head, line_number);
         }
+	else if (strcmp(opcode, "sub") == 0)
+	{
+		sub(head, line_number);
+	}
 	else
 	{
 		fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
