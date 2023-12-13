@@ -1,5 +1,11 @@
 #include "monty.h"
 
+/**
+ *add - adds the top two elements of the stack.
+ *@head: ptr to ptr to stack.
+ *@line_number: number for the line
+ *
+ **/
 void add(stack_t **head, unsigned int line_number)
 {
 	stack_t *temp;
