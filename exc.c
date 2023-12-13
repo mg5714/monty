@@ -26,13 +26,9 @@ void execute_instruction(char *opcode, char *operator, stack_t **head,
 	value = atoi(operator);
 
 	push(head, value);
-	}
-	else if (strcmp(opcode, "pall") == 0)
-	{
+	} else if (strcmp(opcode, "pall") == 0) {
 		pall(head);
-	}
-	else if (strcmp(opcode, "pint") == 0)
-	{
+	} else if (strcmp(opcode, "pint") == 0) {
 		pint(head, line_number);
 	}
 	else if (strcmp(opcode, "pop") == 0)
@@ -48,9 +44,9 @@ void execute_instruction(char *opcode, char *operator, stack_t **head,
 		add(head, line_number);
 	}
 	else if (strcmp(opcode, "nop") == 0)
-        {
-                nop(head, line_number);
-        }
+	{
+		nop(head, line_number);
+	}
 	else if (strcmp(opcode, "sub") == 0)
 	{
 		sub(head, line_number);
@@ -70,6 +66,10 @@ void execute_instruction(char *opcode, char *operator, stack_t **head,
 	else if (strcmp(opcode, "pchar") == 0)
 	{
 		pchar(head, line_number);
+	}
+	else if (strcmp(opcode, "pstr") == 0)
+	{
+		pstr(head, line_number);
 	}
 	else
 	{
