@@ -1,6 +1,7 @@
 #ifndef MONTY_H
 #define MONTY_H
 
+#include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -37,6 +38,10 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+char *_strndup(const char *src, size_t size) ;
+void free_stack(stack_t **head);
+
 
 void read_file(const char *filename);
 void push(stack_t **head, unsigned int value);

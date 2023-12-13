@@ -11,7 +11,8 @@ void read_file(const char *filename)
 {
 	FILE *file;
 	char line[MAX_LINE_LENGTH];
-	char *opcode, *operator;
+	char *opcode;
+	char *operator;
 	unsigned int line_number = 1;
 	stack_t *head = NULL;
 
@@ -31,18 +32,40 @@ void read_file(const char *filename)
 			line[len - 1] = '\0';
 		}
 
-		opcode = strtok(line, " ");
-		operator = strtok(NULL, " ");
+		opcode = strtok(line, " \n\t");
+		operator = strtok(NULL, " \n\t");
 
 		if (opcode != NULL)
 		{
+			operator = _strndup(operator, strlen(operator) + 1);
 			execute_instruction(opcode, operator, &head, line_number);
+			free(operator);
 		}
 
 		line_number++;
 	}
 
+	free_stack(&head);
 	fclose(file);
 
 	exit(EXIT_SUCCESS);
+}
+
+
+/**
+ *free_stack - fun to free
+ *@head: ptr to ptr
+ *
+ **/
+void free_stack(stack_t **head)
+{
+	stack_t *current = *head;
+	
+	while (current)
+	{
+		stack_t *next = current->next;
+		free(current);
+		current = next;
+	}
+	*head = NULL;
 }
