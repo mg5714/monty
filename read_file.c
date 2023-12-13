@@ -32,14 +32,14 @@ void read_file(const char *filename)
 			line[len - 1] = '\0';
 		}
 
-		opcode = strtok(line, " \n\t");
-		operator = strtok(NULL, " \n\t");
-
 		if (line[0] == "#")
 		{
 			line_number++;
 			continue;
 		}
+
+		opcode = strtok(line, " \n\t");
+		operator = strtok(NULL, " \n\t");
 
 		if (opcode != NULL)
 		{
