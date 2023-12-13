@@ -37,7 +37,7 @@ void read_file(const char *filename)
 
 		if (line[0] == "#")
 		{
-			return (0);
+			continue;
 		}
 
 		if (opcode != NULL)
