@@ -15,7 +15,7 @@ void execute_instruction(char *opcode, char *operator, stack_t **head,
 	instruction_t inst[] = {
 		{"pall", pall}, {"pint", pint}, {"pop", pop}, {"swap", swap},
 		{"add", add}, {"nop", nop}, {"sub", sub}, {"div", _div}, {"mul", mul},
-		{"mod", mod}, {"pchar", pchar}, {"pstr", pstr}, {"rotl", rotl}, {NULL, NULL}
+		{"mod", mod}, {"pchar", pchar}, {"pstr", pstr}, {"rotl", rotl}, {"rotr", rotr}, {NULL, NULL}
 	};
 
 	int i = 0, value;
