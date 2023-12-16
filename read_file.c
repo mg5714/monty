@@ -8,7 +8,7 @@
 void read_file(const char *filename)
 {
 	FILE *file;
-	char line[MAX_LINE_LENGTH], *opcode, *operator, *copy_line;
+	char line[MAX_LINE_LENGTH], *opcode, *operator;
 	unsigned int line_number = 1;
 	stack_t *head = NULL;
 
@@ -26,27 +26,18 @@ void read_file(const char *filename)
 		{
 			line[len - 1] = '\0';
 		}
-		copy_line = strdup(line);
-		if (!copy_line)
+		if (line[0] == '#')
 		{
-			fprintf(stderr, "Error: Memory allocation failure\n");
-			fclose(file);
-			free_stack(&head);
-			exit(EXIT_FAILURE);
-		}
-		if (copy_line[0] == '#')
-		{
-			free(copy_line);
 			line_number++;
 			continue;
 		}
-		opcode = strtok(copy_line, " \n\t");
+		opcode = strtok(line, " \n\t");
 		operator = strtok(NULL, " \n\t");
 		if (opcode != NULL)
 		{
 			execute_instruction(opcode, operator, &head, line_number);
 		}
-		free(copy_line);
+
 		line_number++;
 	}
 	free_stack(&head);
