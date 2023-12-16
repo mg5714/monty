@@ -1,16 +1,14 @@
 #include "monty.h"
-
 /**
  * read_file - reading and executing instructions.
  *@filename: A pointer to a character array containing the
  * path to the bytecode file.
- *
  **/
 
 void read_file(const char *filename)
 {
 	FILE *file;
-	char line[MAX_LINE_LENGTH], *opcode, *operator;
+	char line[MAX_LINE_LENGTH], *opcode, *operator, *copy_line;
 	unsigned int line_number = 1;
 	stack_t *head = NULL;
 
@@ -20,7 +18,6 @@ void read_file(const char *filename)
 		fprintf(stderr, "Error: Can't open file %s\n", filename);
 		exit(EXIT_FAILURE);
 	}
-
 	while (fgets(line, sizeof(line), file) != NULL)
 	{
 		size_t len = strlen(line);
@@ -29,22 +26,29 @@ void read_file(const char *filename)
 		{
 			line[len - 1] = '\0';
 		}
-
-		if (line[0] == '#')
+		copy_line = strdup(line);
+		if (!copy_line)
 		{
+			fprintf(stderr, "Error: Memory allocation failure\n");
+			fclose(file);
+			free_stack(&head);
+			exit(EXIT_FAILURE);
+		}
+		if (copy_line[0] == '#')
+		{
+			free(copy_line);
 			line_number++;
 			continue;
 		}
-
-		opcode = strtok(line, " \n\t");
+		opcode = strtok(copy_line, " \n\t");
 		operator = strtok(NULL, " \n\t");
 		if (opcode != NULL)
 		{
 			execute_instruction(opcode, operator, &head, line_number);
 		}
+		free(copy_line);
 		line_number++;
 	}
-
 	free_stack(&head);
 	fclose(file);
 	exit(EXIT_SUCCESS);

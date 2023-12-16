@@ -40,7 +40,7 @@ typedef struct instruction_s
 
 void free_stack(stack_t **head);
 
-
+char *strdup(const char *s);
 void read_file(const char *filename);
 void push(stack_t **head, unsigned int line_number);
 void pall(stack_t **head, unsigned int line_number);
