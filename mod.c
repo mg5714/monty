@@ -17,15 +17,15 @@ void mod(stack_t **head, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-        if ((*head)->n == 0)
-        {
-                fprintf(stderr, "L%u: division by zero\n", line_number);
-                exit(EXIT_FAILURE);
-        }
+	if ((*head)->n == 0)
+	{
+		fprintf(stderr, "L%u: division by zero\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 
-        (*head)->next->n %= (*head)->n;
-        temp = *head;
-        *head = (*head)->next;
-        free(temp);
+	(*head)->next->n %= (*head)->n;
+	temp = *head;
+	*head = (*head)->next;
+	free(temp);
 }
 
