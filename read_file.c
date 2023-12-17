@@ -1,10 +1,8 @@
 #include "monty.h"
-
 /**
  * read_file - reading and executing instructions.
  *@filename: A pointer to a character array containing the
  * path to the bytecode file.
- *
  **/
 
 void read_file(const char *filename)
@@ -20,7 +18,6 @@ void read_file(const char *filename)
 		fprintf(stderr, "Error: Can't open file %s\n", filename);
 		exit(EXIT_FAILURE);
 	}
-
 	while (fgets(line, sizeof(line), file) != NULL)
 	{
 		size_t len = strlen(line);
@@ -29,22 +26,20 @@ void read_file(const char *filename)
 		{
 			line[len - 1] = '\0';
 		}
-
 		if (line[0] == '#')
 		{
 			line_number++;
 			continue;
 		}
-
 		opcode = strtok(line, " \n\t");
 		operator = strtok(NULL, " \n\t");
 		if (opcode != NULL)
 		{
 			execute_instruction(opcode, operator, &head, line_number);
 		}
+
 		line_number++;
 	}
-
 	free_stack(&head);
 	fclose(file);
 	exit(EXIT_SUCCESS);

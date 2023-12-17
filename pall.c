@@ -3,6 +3,7 @@
 /**
  * pall - prints all the values on the stack, starting from the top.
  * @head: spointer to pointer tack head
+ * @line_number: number of lines.
  *
  **/
 void pall(stack_t **head, unsigned int line_number)

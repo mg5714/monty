@@ -15,26 +15,26 @@ void execute_instruction(char *opcode, char *operator, stack_t **head,
 	instruction_t inst[] = {
 		{"pall", pall}, {"pint", pint}, {"pop", pop}, {"swap", swap},
 		{"add", add}, {"nop", nop}, {"sub", sub}, {"div", _div}, {"mul", mul},
-		{"mod", mod}, {"pchar", pchar}, {"pstr", pstr}, {"rotl", rotl}, {NULL, NULL}
+		{"mod", mod}, {"pchar", pchar}, {"pstr", pstr}, {"rotl", rotl},
+		{"rotr", rotr}, {NULL, NULL}
 	};
 
 	int i = 0, value;
 
 	if (strcmp(opcode, "push") == 0)
 	{
-		if ((operator == NULL || !isdigit(operator[0])) &&
-				(operator[0] != '-' || !isdigit(operator[1])))
+		if (operator == NULL || operator[0] == '\0')
 		{
 			fprintf(stderr, "L%u: usage: push integer\n", line_number);
 			exit(EXIT_FAILURE);
 		}
-
+		if ((operator[0] != '-' && !isdigit(operator[0])) ||
+				(operator[0] == '-' && !isdigit(operator[1])))
+		{
+			fprintf(stderr, "L%u: usage: push integer\n", line_number);
+			exit(EXIT_FAILURE);
+		}
 		value = atoi(operator);
-		if (value == 0 && operator[0] != '0')
-		{
-			fprintf(stderr, "L%u: usage: push integer\n", line_number);
-			exit(EXIT_FAILURE);
-		}
 		push(head, value);
 		return;
 	}
